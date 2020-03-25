@@ -1,0 +1,20 @@
+title = "Blog Category"
+url = "/blog-category/:slug"
+layout = "default"
+is_hidden = 0
+
+[blogCategories]
+slug = "{{ :slug }}"
+displayEmpty = 0
+categoryPage = "blog-category"
+==
+{% if blogCategories.categories|length > 0 %}
+    <ul class="category-list">
+        {% partial blogCategories ~ "::items"
+            categories = blogCategories.categories
+            currentCategorySlug = blogCategories.currentCategorySlug
+        %}
+    </ul>
+{% else %}
+    <p>No categories were found.</p>
+{% endif %}
